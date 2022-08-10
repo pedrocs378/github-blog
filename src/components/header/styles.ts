@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import coverImg from '../../assets/cover.png'
 
 export const HeaderContainer = styled.header`
-  height: 18.5rem;
+  width: 100%;
+  height: 17.5rem;
 
-  background: url(${coverImg}) no-repeat center;
+  background: url(${coverImg}) no-repeat top center;
+  background-size: 100%;
   display: flex;
   justify-content: center;
 

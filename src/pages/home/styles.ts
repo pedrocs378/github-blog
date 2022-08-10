@@ -1,70 +1,98 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const HomeContainer = styled.main``
+export const HomeContainer = styled.main`
+  > section {
+    margin-top: 4.5rem;
 
-export const AuthorCard = styled.div`
-  padding: 2rem 2.5rem;
-  border-radius: 10px;
-  background-color: ${({ theme }) => theme.colors.blue[800]};
+    header {
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-  box-shadow: 0 2px 28px rgba(0, 0, 0, 0.2);
+        strong {
+          font-size: ${({ theme }) => theme.fontSizes.lg};
+          line-height: ${({ theme }) => theme.lineHeights.default};
+          color: ${({ theme }) => theme.colors.blue[200]};
+        }
 
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-
-  > img {
-    width: 148px;
-    height: 148px;
-    border-radius: 8px;
+        small {
+          font-size: ${({ theme }) => theme.fontSizes.sm};
+          line-height: ${({ theme }) => theme.lineHeights.default};
+          color: ${({ theme }) => theme.colors.blue[300]};
+        }
+      }
+    }
   }
 `
 
-export const AuthorCardInfo = styled.div`
+export const SearchInput = styled.input`
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+
+  border: 1px solid ${({ theme }) => theme.colors.blue[600]};
+  background-color: ${({ theme }) => theme.colors.blue[900]};
+  color: ${({ theme }) => theme.colors.text};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.blue[400]};
+  }
+`
+
+export const PostsList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+`
+
+export const PortCard = styled(Link)`
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.blue[700]};
+  border: 2px solid transparent;
+
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+
   header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
 
     strong {
-      font-size: ${({ theme }) => theme.fontSizes.xxl};
-      font-weight: bold;
-      line-height: 1.3;
+      max-width: 80%;
+      font-size: ${({ theme }) => theme.fontSizes.xl};
+      line-height: ${({ theme }) => theme.lineHeights.default};
       color: ${({ theme }) => theme.colors.blue[100]};
     }
 
-    a {
-      text-decoration: none;
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: ${({ theme }) => theme.fontSizes.xs};
-      color: ${({ theme }) => theme.colors.blue[500]};
-
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      &:hover {
-        text-decoration: underline;
-      }
+    time {
+      color: ${({ theme }) => theme.colors.blue[300]};
+      font-size: ${({ theme }) => theme.fontSizes.sm};
+      line-height: ${({ theme }) => theme.lineHeights.default};
     }
   }
 
   p {
-    margin-top: 0.5rem;
+    margin-top: 1.25rem;
     line-height: ${({ theme }) => theme.lineHeights.default};
+    color: ${({ theme }) => theme.colors.text};
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
   }
 
-  footer {
-    margin-top: 1.5rem;
-
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-
-    span {
-      color: ${({ theme }) => theme.colors.blue[200]};
-      line-height: ${({ theme }) => theme.lineHeights.default};
-    }
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.blue[400]};
   }
 `

@@ -12,6 +12,16 @@ export const GlobalStyle = createGlobalStyle`
     box-shadow: 0 0 2px 2px ${({ theme }) => theme.colors.blue[500]};
   }
 
+  ::-moz-selection {
+    color: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }) => theme.colors.blue[500]};
+  }
+
+  ::selection {
+    color: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }) => theme.colors.blue[500]};
+  }
+
   body {
     background: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
