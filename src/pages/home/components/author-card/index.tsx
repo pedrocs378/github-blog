@@ -1,3 +1,4 @@
+import { IconLabel } from '../../../../components/icon-label'
 import { Icons } from '../../../../components/icons'
 
 import * as S from './styles'
@@ -20,18 +21,12 @@ export function AuthorCard() {
           adipisci expedita voluptatum maxime.
         </p>
         <footer>
-          <S.AuthorInfoLabel>
-            <Icons.Github size={18} />
-            <span>pedrocs378</span>
-          </S.AuthorInfoLabel>
-          <S.AuthorInfoLabel>
-            <Icons.Building size={18} />
-            <span>Rocketseat</span>
-          </S.AuthorInfoLabel>
-          <S.AuthorInfoLabel>
-            <Icons.UserGroup size={18} />
-            <span>32 seguidores</span>
-          </S.AuthorInfoLabel>
+          <IconLabel icon={<Icons.Github size={18} />} label="pedrocs378" />
+          <IconLabel icon={<Icons.Building size={18} />} label="Rocketseat" />
+          <IconLabel
+            icon={<Icons.UserGroup size={18} />}
+            label="32 seguidores"
+          />
         </footer>
       </S.AuthorCardDetails>
     </S.AuthorCardContainer>

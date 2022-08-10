@@ -18,6 +18,7 @@ export const defaultTheme = {
   },
   lineHeights: {
     default: 1.6,
+    sm: 1.3,
   },
   fontSizes: {
     /** 12px */

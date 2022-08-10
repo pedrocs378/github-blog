@@ -3,7 +3,9 @@ type IconType = {
   color?: string
 }
 
-function ArrowUpRightFromSquare({ color, size = 16 }: IconType) {
+const DEFAULT_ICON_SIZE = 16
+
+function ArrowUpRightFromSquare({ color, size = DEFAULT_ICON_SIZE }: IconType) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +19,7 @@ function ArrowUpRightFromSquare({ color, size = 16 }: IconType) {
   )
 }
 
-function Github({ color, size = 16 }: IconType) {
+function Github({ color, size = DEFAULT_ICON_SIZE }: IconType) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +33,7 @@ function Github({ color, size = 16 }: IconType) {
   )
 }
 
-function Building({ color, size = 16 }: IconType) {
+function Building({ color, size = DEFAULT_ICON_SIZE }: IconType) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +47,7 @@ function Building({ color, size = 16 }: IconType) {
   )
 }
 
-function UserGroup({ color, size = 16 }: IconType) {
+function UserGroup({ color, size = DEFAULT_ICON_SIZE }: IconType) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -59,9 +61,54 @@ function UserGroup({ color, size = 16 }: IconType) {
   )
 }
 
+function ChevronLeft({ color, size = DEFAULT_ICON_SIZE }: IconType) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 320 512"
+      height={size}
+      width={size}
+      fill={color ?? 'currentColor'}
+    >
+      <path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z" />
+    </svg>
+  )
+}
+
+function CalendarDay({ color, size = DEFAULT_ICON_SIZE }: IconType) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 448 512"
+      height={size}
+      width={size}
+      fill={color ?? 'currentColor'}
+    >
+      <path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM80 256C71.16 256 64 263.2 64 272V368C64 376.8 71.16 384 80 384H176C184.8 384 192 376.8 192 368V272C192 263.2 184.8 256 176 256H80z" />
+    </svg>
+  )
+}
+
+function Comment({ color, size = DEFAULT_ICON_SIZE }: IconType) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      height={size}
+      width={size}
+      fill={color ?? 'currentColor'}
+    >
+      <path d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z" />
+    </svg>
+  )
+}
+
 export const Icons = {
   ArrowUpRightFromSquare,
   Github,
   Building,
   UserGroup,
+  ChevronLeft,
+  CalendarDay,
+  Comment,
 }

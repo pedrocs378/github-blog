@@ -63,18 +63,3 @@ export const AuthorCardDetails = styled.div`
     gap: 1.5rem;
   }
 `
-
-export const AuthorInfoLabel = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  svg {
-    color: ${({ theme }) => theme.colors.blue[400]};
-  }
-
-  span {
-    color: ${({ theme }) => theme.colors.blue[200]};
-    line-height: ${({ theme }) => theme.lineHeights.default};
-  }
-`

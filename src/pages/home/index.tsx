@@ -18,7 +18,7 @@ export function Home() {
         </header>
 
         <S.PostsList>
-          <S.PortCard to="#">
+          <S.PortCard to={'/post/123'}>
             <header>
               <strong>JavaScript data types and data structures</strong>
               <time dateTime="2022-08-10T22:37:21.351Z">Há 1 dia</time>
@@ -31,7 +31,7 @@ export function Home() {
               expedita exercitationem nostrum aperiam at?
             </p>
           </S.PortCard>
-          <S.PortCard to="#">
+          <S.PortCard to={'/post/123'}>
             <header>
               <strong>JavaScript data types and data structures</strong>
               <time dateTime="2022-08-10T22:37:21.351Z">Há 1 dia</time>
@@ -44,7 +44,7 @@ export function Home() {
               expedita exercitationem nostrum aperiam at?
             </p>
           </S.PortCard>
-          <S.PortCard to="#">
+          <S.PortCard to={'/post/123'}>
             <header>
               <strong>JavaScript data types and data structures</strong>
               <time dateTime="2022-08-10T22:37:21.351Z">Há 1 dia</time>
