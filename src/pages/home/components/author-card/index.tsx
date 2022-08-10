@@ -11,7 +11,11 @@ export function AuthorCard() {
       <S.AuthorCardDetails>
         <header>
           <strong>Pedor César</strong>
-          <a href="https://github.com/pedrocs378">
+          <a
+            href="https://github.com/pedrocs378"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Github
             <Icons.ArrowUpRightFromSquare size={12} />
           </a>
