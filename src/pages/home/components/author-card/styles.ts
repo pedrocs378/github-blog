@@ -2,23 +2,32 @@ import styled from 'styled-components'
 
 export const AuthorCardContainer = styled.div`
   padding: 2rem 2.5rem;
+  min-height: 200px;
+
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.blue[800]};
 
   box-shadow: 0 2px 28px rgba(0, 0, 0, 0.2);
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 2rem;
 
-  > img {
+  img {
     width: 148px;
     height: 148px;
     border-radius: 8px;
   }
+
+  > p {
+    align-self: center;
+    margin: 0 auto;
+  }
 `
 
 export const AuthorCardDetails = styled.div`
+  width: 100%;
+
   header {
     display: flex;
     align-items: center;
