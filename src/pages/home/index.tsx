@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
@@ -23,46 +23,83 @@ type PostData = {
   title: string
   number: number
   created_at: string
+  formattedCreatedAt: string
   body?: string
   normalizedBody?: string
-  formattedCreatedAt?: string
+}
+
+type PostSearchResult = {
+  items: PostData[]
+}
+
+function normalizePosts(posts: PostData[]) {
+  return posts.map((post) => {
+    const normalizedBody = post.body?.replace(/[^a-zA-Z0-9/,. ]/g, '')
+
+    return {
+      ...post,
+      normalizedBody,
+      formattedCreatedAt: formatDistanceToNow(new Date(post.created_at), {
+        locale: ptBR,
+        addSuffix: true,
+      }),
+    }
+  })
 }
 
 export function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState<User>()
   const [posts, setPosts] = useState<PostData[]>([])
+  const [searchText, setSearchText] = useState('')
 
   useEffect(() => {
-    async function loadUser() {
+    async function loadDatas() {
       try {
-        const userResponse = await githubApi.get<User>('/users/pedrocs378')
-        const postsResponse = await githubApi.get<PostData[]>(
-          '/repos/pedrocs378/github-blog/issues',
-        )
-
-        const postsData = postsResponse.data.map((post) => {
-          const normalizedBody = post.body?.replace(/[^a-zA-Z0-9/,. ]/g, '')
-
-          return {
-            ...post,
-            normalizedBody,
-            formattedCreatedAt: formatDistanceToNow(new Date(post.created_at), {
-              locale: ptBR,
-              addSuffix: true,
-            }),
-          }
-        })
-
-        setUser(userResponse.data)
-        setPosts(postsData)
+        await loadUser()
+        await loadPosts()
       } finally {
         setIsLoading(false)
       }
     }
 
-    loadUser()
+    loadDatas()
   }, [])
+
+  async function loadUser() {
+    const response = await githubApi.get<User>('/users/pedrocs378')
+    setUser(response.data)
+  }
+
+  async function loadPosts(query?: string) {
+    if (query) {
+      const response = await githubApi.get<PostSearchResult>(
+        `/search/issues?q=${query}+repo:pedrocs378/github-blog`,
+      )
+
+      const postsData = normalizePosts(response.data.items)
+
+      setPosts(postsData)
+    } else {
+      const response = await githubApi.get<PostData[]>(
+        '/repos/pedrocs378/github-blog/issues',
+      )
+
+      const postsData = normalizePosts(response.data)
+
+      setPosts(postsData)
+    }
+  }
+
+  function handleChangeSeachText(event: ChangeEvent<HTMLInputElement>) {
+    setSearchText(event.target.value)
+  }
+
+  async function handleSearchPosts(event: FormEvent) {
+    event.preventDefault()
+
+    await loadPosts(searchText)
+  }
 
   return (
     <S.HomeContainer>
@@ -77,7 +114,14 @@ export function Home() {
             </small>
           </div>
 
-          <S.SearchInput type="search" placeholder="Buscar conteúdo" />
+          <form onSubmit={handleSearchPosts}>
+            <S.SearchInput
+              type="search"
+              placeholder="Buscar conteúdo"
+              onChange={handleChangeSeachText}
+              onAbortCapture={() => console.log('entrou')}
+            />
+          </form>
         </header>
 
         <S.PostsList>
