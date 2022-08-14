@@ -18,9 +18,10 @@ type User = {
   bio?: string
 }
 
-type Post = {
+type PostData = {
   id: number
   title: string
+  number: number
   created_at: string
   body?: string
   normalizedBody?: string
@@ -30,13 +31,13 @@ type Post = {
 export function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState<User>()
-  const [posts, setPosts] = useState<Post[]>([])
+  const [posts, setPosts] = useState<PostData[]>([])
 
   useEffect(() => {
     async function loadUser() {
       try {
         const userResponse = await githubApi.get<User>('/users/pedrocs378')
-        const postsResponse = await githubApi.get<Post[]>(
+        const postsResponse = await githubApi.get<PostData[]>(
           '/repos/pedrocs378/github-blog/issues',
         )
 
@@ -82,7 +83,7 @@ export function Home() {
         <S.PostsList>
           {posts.map((post) => {
             return (
-              <S.PortCard key={post.id} to={`/post/${post.id}`}>
+              <S.PortCard key={post.id} to={`/post/${post.number}`}>
                 <header>
                   <strong>{post.title}</strong>
                   <time dateTime={post.created_at}>

@@ -52,4 +52,29 @@ export const PostTitleCard = styled.div`
 
 export const PostContent = styled.div`
   padding: 2.5rem 2rem;
+
+  p {
+    line-height: ${({ theme }) => theme.lineHeights.default};
+
+    a {
+      color: ${({ theme }) => theme.colors.blue[500]};
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    & + p {
+      margin-top: 1.5rem;
+    }
+  }
+
+  pre {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 2px;
+
+    background-color: ${({ theme }) => theme.colors.blue[700]};
+  }
 `
