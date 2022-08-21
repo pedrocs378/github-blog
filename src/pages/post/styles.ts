@@ -76,5 +76,11 @@ export const PostContent = styled.div`
     border-radius: 2px;
 
     background-color: ${({ theme }) => theme.colors.blue[700]};
+
+    > div {
+      background-color: transparent !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
   }
 `

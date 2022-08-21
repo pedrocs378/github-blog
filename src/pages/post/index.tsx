@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
@@ -101,7 +103,30 @@ export function Post() {
       </S.PostTitleCard>
 
       <S.PostContent>
-        {post?.body && <ReactMarkdown>{post.body}</ReactMarkdown>}
+        {post?.body && (
+          <ReactMarkdown
+            components={{
+              code: ({ inline, className, children, ...rest }) => {
+                const match = /language-(\w+)/.exec(className ?? '')
+
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    children={String(children).replace(/\n$/, '')}
+                    language={match[1]}
+                    PreTag="div"
+                    style={darcula}
+                  />
+                ) : (
+                  <code className={className} {...rest}>
+                    {children}
+                  </code>
+                )
+              },
+            }}
+          >
+            {post.body}
+          </ReactMarkdown>
+        )}
       </S.PostContent>
     </S.PostContainer>
   )
