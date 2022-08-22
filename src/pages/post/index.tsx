@@ -105,6 +105,12 @@ export function Post() {
       <S.PostContent>
         {post?.body && (
           <ReactMarkdown
+            linkTarget="_blank"
+            transformLinkUri={(href) => {
+              const hasHttp = ['http', 'https'].includes(href)
+
+              return hasHttp ? href : `https://${href}`
+            }}
             components={{
               code: ({ inline, className, children, ...rest }) => {
                 const match = /language-(\w+)/.exec(className ?? '')

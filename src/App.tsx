@@ -1,12 +1,12 @@
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
+import { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { Router } from './router'
 
 import { defaultTheme } from './styles/theme/default'
 import { GlobalStyle } from './styles/global'
-import { SkeletonTheme } from 'react-loading-skeleton'
 
 function App() {
   return (
